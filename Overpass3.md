@@ -109,9 +109,9 @@ gpg:  secret keys unchanged: 1
 
 | Customer Name  |  Username    |     Password     |  Credit card number |CCV|
 |----------------|--------------|------------------|---------------------|---|
-| Par. A. Doxx   |   paradox    |ShibesAreGreat123 | 4111 1111 4555 1142 |432|
-| 0day Montgomery|    0day      |OllieIsTheBestDog | 5555 3412 4444 1115 |642|
-| Muir Land      |muirlandoracle|A11D0gsAreAw3s0me | 5103 2219 1119 9245 |737|
+| Par. A. Doxx   |   p-----x    |S---------------3 | 4111 1111 4555 1142 |432|
+| 0--y Montgomery|    0--y      |O---------------g | 5555 3412 4444 1115 |642|
+| Muir Land      |m------------e|A---------------e | 5103 2219 1119 9245 |737|
 
 ```
 hydra -L user -P pass ssh://10.10.211.114
