@@ -254,6 +254,17 @@ Warning: Permanently added '--.--.---.---' (ECDSA) to the list of known hosts.
 Last login: Sat Apr 10 01:59:56 2021
 ```
 
+Can I get lucky
+
+find / -name *.flag 2>/dev/null
+
+/***/*****/*****/***.flag
+
+cat /***/*****/*****/***.flag
+
+thm{0************************94be09d}
+
+Yeah Baby
 
 ```
 Using Linpeas.sh
@@ -263,4 +274,24 @@ Using Linpeas.sh
 [+] NFS exports?
 [i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe                                                         
 /home/james *(rw,fsid=0,sync,no_root_squash,insecure)
+```
+
+```
+ss -ltn
+State               Recv-Q              Send-Q                            Local Address:Port                              Peer Address:Port              
+LISTEN              0                   5                                       0.0.0.0:8000                                   0.0.0.0:*                 
+LISTEN              0                   64                                      0.0.0.0:2049                                   0.0.0.0:*                 
+LISTEN              0                   128                                     0.0.0.0:53063                                  0.0.0.0:*                 
+LISTEN              0                   64                                      0.0.0.0:36009                                  0.0.0.0:*                 
+LISTEN              0                   128                                     0.0.0.0:111                                    0.0.0.0:*                 
+LISTEN              0                   128                                     0.0.0.0:20048                                  0.0.0.0:*                 
+LISTEN              0                   128                                     0.0.0.0:22                                     0.0.0.0:*                 
+LISTEN              0                   64                                         [::]:2049                                      [::]:*                 
+LISTEN              0                   64                                         [::]:46415                                     [::]:*                 
+LISTEN              0                   128                                        [::]:54895                                     [::]:*                 
+LISTEN              0                   128                                        [::]:111                                       [::]:*                 
+LISTEN              0                   128                                        [::]:20048                                     [::]:*                 
+LISTEN              0                   128                                           *:80                                           *:*                 
+LISTEN              0                   32                                            *:21                                           *:*                 
+LISTEN              0                   128                                        [::]:22                                        [::]:*                 
 ```
